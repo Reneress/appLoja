@@ -1,0 +1,13 @@
+package models;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name="table_pedido")
+public class Pedido implements Serializable{
+	
+}

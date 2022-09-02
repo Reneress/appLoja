@@ -1,0 +1,22 @@
+package models;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name="table_cliente")
+public class Cliente implements Serializable{
+	
+	//Attributes
+	private Integer id;
+	private String nome;
+	private String email;
+	private String cpfOuCnpj;
+	
+	//Constructors
+	
+	
+}
