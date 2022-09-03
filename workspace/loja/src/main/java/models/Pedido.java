@@ -9,14 +9,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "table_pedido")
 public class Pedido implements Serializable {
 	// Attributes
+	
 	private Integer id;
 	private Date instante;
+	private Pagamento pagamento;
 
 	// Constructors
 	public Pedido() {
@@ -40,6 +44,7 @@ public class Pedido implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="instante")
 	public Date getInstante() {
 		return instante;

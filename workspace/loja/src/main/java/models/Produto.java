@@ -18,7 +18,8 @@ public class Produto implements Serializable {
 	private Integer id;
 	private String nome;
 	private double preco;
-
+	
+	
 	//Constructors
 	
 	public Produto() {
