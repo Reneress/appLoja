@@ -1,7 +1,0 @@
-package models;
-
-public enum TipoCliente {
-	
-	public Integer PESSOAFISICA;
-	public Integer PESSOAJURIDICA;
-}
