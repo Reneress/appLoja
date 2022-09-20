@@ -23,7 +23,7 @@ public class PagamentoComBoletoDAO {
 		getEm().persist(pagamentoComBoleto);
 	}
 	
-	public PagamentoComBoleto updatePagementoComBoleto (PagamentoComBoleto pagamentoComBoleto) {
+	public PagamentoComBoleto updatePagamentoComBoleto (PagamentoComBoleto pagamentoComBoleto) {
 		return getEm().merge(pagamentoComBoleto);
 	}
 	
