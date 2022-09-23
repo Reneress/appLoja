@@ -10,4 +10,5 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="services.PagamentoBoletoService"/>
     <fullyQualifiedTypeName name="models.PagamentoComBoleto"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
 </qualifiedTypeNameHistroy>

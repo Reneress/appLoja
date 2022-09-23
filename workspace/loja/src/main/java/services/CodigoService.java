@@ -6,12 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 
-import dao.CodigoDAO;
-import models.Codigo;
+//import dao.CodigoDAO;
+//import models.Codigo;
 import persistence.DataBaseConnection;
 
 public class CodigoService {
-	//Attributes
+	/*Attributes
 		@PersistenceContext(unitName = "apploja")
 		private final EntityManager em;
 		
@@ -105,5 +105,5 @@ public class CodigoService {
 
 		private EntityManager getEm() {
 			return em;
-		}
+		}*/
 }
