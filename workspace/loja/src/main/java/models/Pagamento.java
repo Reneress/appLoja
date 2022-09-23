@@ -19,7 +19,7 @@ public class Pagamento implements Serializable {
 
 	// Attributes
 	@Id
-	private Integer id;
+	private Long id;
 	private Integer estado;
 
 	@JoinColumn(name = "pedido_id")
@@ -32,7 +32,7 @@ public class Pagamento implements Serializable {
 	public Pagamento() {
 	}
 
-	public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
+	public Pagamento(Long id, EstadoPagamento estado, Pedido pedido) {
 		super();
 		this.id = id;
 		this.estado = estado.getCod();
@@ -40,12 +40,12 @@ public class Pagamento implements Serializable {
 	}
 
 	// Methods
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Long idPagBoleto) {
+		this.id = idPagBoleto;
 	}
 
 	public Integer getEstado() {

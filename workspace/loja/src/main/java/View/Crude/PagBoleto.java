@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -67,24 +68,27 @@ public class PagBoleto extends JFrame {
 			btnSalvar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(idPagBoleto == 0l) {
-						
+						salvarPagBoleto();
 					}else {
-						
+						alterarPagBoleto();
 					}
 				}
 			});
 			
 			btnExcluir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					excluirPagBoleto();
 				}
 			});
 			btnAlterar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					alterarPagBoleto();
 				}
 			});
 			
 			btnCancelar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					dispose();
 				}
 			});
 		}
@@ -93,12 +97,45 @@ public class PagBoleto extends JFrame {
 			pagamentoBoletoService = getPagBoletoService();
 			pagamentoBoleto = getPagBoleto();
 			
+			setPagBoletoview();
+			pagamentoBoletoService.addPagamentoBoleto(pagamentoBoleto);
+			
+			limpa();
 			
 			
 		}
 		
+		public void alterarPagBoleto() {
+			pagamentoBoleto = getPagBoleto();
+			pagamentoBoletoService = getPagBoletoService();
+			
+			pagamentoBoleto.setId(idPagBoleto);
+			setPagBoletoview();
+			
+			pagamentoBoletoService.updatePagamentoBoleto(pagamentoBoleto);
+			limpa();
+		}
+		
+		public void excluirPagBoleto() {
+			pagamentoBoletoService = getPagBoletoService();
+			pagamentoBoletoService.removePagamentoComBoleto(idPagBoleto);
+			
+			limpa();
+		}
+				
 		private void setPagBoletoview() {
-			pagamentoBoleto.setEstado(txtEstado.getText());
+			pagamentoBoleto.setId(idPagBoleto);
+			pagamentoBoleto.setEstado(Integer.parseInt(txtEstado.getText()));
+			pagamentoBoleto.setDataPagamento(Date.valueOf(txtDataPagamento.getText()));
+			pagamentoBoleto.setDataVencimento(Date.valueOf(txtDataVencimento.getText()));
+			
+		}
+		
+		private void limpa() {
+			idPagBoleto = 0l;
+			txtDataPagamento.setText("");
+			txtDataVencimento.setText("");
+			txtEstado.setText("");
 		}
 		
 		private void initComponents() {
