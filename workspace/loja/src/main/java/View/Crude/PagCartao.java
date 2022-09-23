@@ -5,6 +5,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+
+import models.PagamentoComCartao;
+
+import services.PagamentoCartaoService;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -26,9 +32,11 @@ public class PagCartao extends JFrame {
 	JButton btnCancelar = new JButton("Cancelar");
 	private JTextField txtEstado;
 	private JTextField txtParcelas;
-	private JTextField textField_2;
 	
-
+	private long idPagCartao = 0l;
+	private PagamentoCartaoService pagamentoCartaoService;
+	
+	private PagamentoComCartao pagamentoCartao;
 	/**
 	 * Launch the application.
 	 */
@@ -76,6 +84,60 @@ public class PagCartao extends JFrame {
 		
 		
 	}
+	
+	public void salvarPagCartao() {
+		pagamentoCartaoService = getPagCartaoService();
+		pagamentoCartao = getPagCartao();
+		
+		setPagCartaoview();
+		pagamentoCartaoService.addPagamentoCartao(pagamentoCartao);
+		
+		limpa();
+		
+		
+	}
+	
+	public void alterarPagBoleto() {
+		pagamentoCartao = getPagCartao();
+		pagamentoCartaoService = getPagCartaoService();
+		
+		pagamentoCartao.setId(idPagCartao);
+		setPagCartaoview();
+		
+		pagamentoCartaoService.updatePagamentoCartao(pagamentoCartao);
+		limpa();
+	}
+	
+	public void excluirPagBoleto() {
+		pagamentoCartaoService = getPagCartaoService();
+		pagamentoCartaoService.removePagamentoCartao(idPagCartao);
+		
+		limpa();
+	}
+			
+	private void setPagCartaoview() {
+		pagamentoCartao.setId(idPagCartao);
+		pagamentoCartao.setEstado(Integer.parseInt(txtEstado.getText()));
+		pagamentoCartao.setNumeroDeParcelas(Integer.parseInt(txtParcelas.getText()));
+		
+		
+	}
+	
+	private void limpa() {
+		
+		idPagCartao = 0l;
+		txtParcelas.setText("");
+		txtEstado.setText("");
+	}
+	
+	public PagamentoCartaoService getPagCartaoService() {
+		return new PagamentoCartaoService();
+	}
+	
+	public PagamentoComCartao getPagCartao() {
+		return new PagamentoComCartao();
+	}
+	
 	private void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 798, 476);
@@ -145,11 +207,6 @@ public class PagCartao extends JFrame {
 		lblNewLabel_1_1.setBounds(10, 56, 85, 21);
 		panel_1.add(lblNewLabel_1_1);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("New label");
-		lblNewLabel_1_2.setFont(new Font("Segoe UI", Font.ITALIC, 15));
-		lblNewLabel_1_2.setBounds(10, 87, 85, 21);
-		panel_1.add(lblNewLabel_1_2);
-		
 		txtEstado = new JTextField();
 		txtEstado.setFont(new Font("Segoe UI", Font.ITALIC, 15));
 		txtEstado.setBounds(99, 26, 374, 19);
@@ -167,11 +224,5 @@ public class PagCartao extends JFrame {
 		txtParcelas.setColumns(10);
 		txtParcelas.setBounds(99, 57, 374, 19);
 		panel_1.add(txtParcelas);
-		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Segoe UI", Font.ITALIC, 15));
-		textField_2.setColumns(10);
-		textField_2.setBounds(99, 87, 374, 19);
-		panel_1.add(textField_2);
 	}
 }

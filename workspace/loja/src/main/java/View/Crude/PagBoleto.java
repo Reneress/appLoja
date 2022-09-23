@@ -132,6 +132,7 @@ public class PagBoleto extends JFrame {
 		}
 		
 		private void limpa() {
+			
 			idPagBoleto = 0l;
 			txtDataPagamento.setText("");
 			txtDataVencimento.setText("");
